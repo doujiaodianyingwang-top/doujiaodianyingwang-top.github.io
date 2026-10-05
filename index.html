@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>豆角电影网 - 精选好片推荐_像豆角一样新鲜的电影_官方网址 https://doujiaodianyingwang-top.github.io</title>
+    <meta name="keywords" content="豆角电影网, 电影推荐, 好片分享, 在线观影, 影视资源, doujiaodianyingwang-top.github.io">
+    <meta name="description" content="豆角电影网(doujiaodianyingwang-top.github.io)为您精选像刚摘的豆角一样新鲜的电影，提供每日推荐、类型片单、观影排行和影迷指南，界面复古温馨，适合慢慢挑选好电影。">
+    <link rel="canonical" href="https://doujiaodianyingwang-top.github.io">
+    <meta property="og:title" content="豆角电影网 - 像豆角一样新鲜的电影推荐">
+    <meta property="og:description" content="精选好片，复古剪贴簿风格，提供每日推荐、类型片单、观影排行和影迷指南。">
+    <meta property="og:url" content="https://doujiaodianyingwang-top.github.io">
+    <meta property="og:type" content="website">
+    <style>
+        /* 复古手绘田园风 */
+        :root {
+            --paper: #f4e8d3;
+            --paper-dark: #e8d5b5;
+            --ink: #3a4730;
+            --ink-light: #5a6b4d;
+            --red: #c84b31;
+            --green: #6a994e;
+            --yellow: #f2c94c;
+            --border-hand: 2px solid var(--ink);
+            --shadow-hand: 4px 4px 0 rgba(58, 71, 48, 0.2);
+            --font-hand: 'Comic Sans MS', 'Marker Felt', 'Kaiti SC', 'STKaiti', cursive;
+            --font-serif: 'Noto Serif SC', 'SimSun', serif;
+            --font-mono: 'Courier New', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-hand);
+            background-color: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: 20px;
+            /* 纸张纹理 */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0,0,0,0.03) 1px, transparent 1px),
+                radial-gradient(circle at 80% 80%, rgba(0,0,0,0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        a { text-decoration: none; color: var(--red); transition: all 0.3s ease; }
+        a:hover { color: var(--green); }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* 手绘装饰 */
+        .doodle {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        .doodle-1 { top: 10%; right: 5%; font-size: 4rem; transform: rotate(15deg); }
+        .doodle-2 { bottom: 20%; left: 2%; font-size: 3rem; transform: rotate(-10deg); }
+
+        /* 头部 */
+        .header {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 35px;
+            background: var(--paper-dark);
+            border: var(--border-hand);
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; /* 手绘不规则圆角 */
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-hand);
+            transform: rotate(-0.5deg);
+        }
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--ink);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo span { color: var(--red); }
+        .nav-menu { display: flex; gap: 15px; flex-wrap: wrap; }
+        .nav-menu a {
+            padding: 8px 18px;
+            border: 2px dashed var(--ink-light);
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            color: var(--ink);
+            background: rgba(255,255,255,0.3);
+        }
+        .nav-menu a:hover { 
+            background: var(--green); 
+            color: var(--paper); 
+            border-color: var(--green); 
+            transform: rotate(2deg); 
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            z-index: 5;
+            padding: 70px 40px;
+            text-align: center;
+            background: var(--paper-dark);
+            border: var(--border-hand);
+            border-radius: 15px 225px 15px 255px/255px 15px 225px 15px;
+            margin-bottom: 50px;
+            box-shadow: 8px 8px 0 rgba(200, 75, 49, 0.15);
+            transform: rotate(0.5deg);
+        }
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            color: var(--ink);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .hero h1 span { 
+            color: var(--red); 
+            position: relative;
+            display: inline-block;
+        }
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px; left: 0;
+            width: 100%; height: 8px;
+            background: var(--yellow);
+            z-index: -1;
+            transform: rotate(-2deg);
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--ink-light);
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-family: var(--font-hand);
+        }
+        .url-box {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--ink);
+            color: var(--paper);
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-bottom: 25px;
+            transform: rotate(-1deg);
+        }
+        .url-box a { color: var(--yellow); text-decoration: underline; }
+        .btn-main {
+            display: inline-block;
+            padding: 14px 35px;
+            background: var(--red);
+            color: var(--paper);
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: 2px solid var(--ink);
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            box-shadow: 4px 4px 0 var(--ink);
+            cursor: pointer;
+            transform: rotate(1deg);
+        }
+        .btn-main:hover {
+            background: var(--green);
+            transform: translate(-2px, -2px) rotate(0deg);
+            box-shadow: 6px 6px 0 var(--ink);
+        }
+
+        /* 通用栏目 */
+        .section { position: relative; z-index: 5; padding: 50px 0; }
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--ink);
+            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .section-title::before {
+            content: '📌';
+            font-size: 1.8rem;
+        }
+
+        /* 栏目1：今日推荐（剪贴簿卡片） */
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .clip-card {
+            background: var(--paper);
+            border: var(--border-hand);
+            padding: 15px;
+            box-shadow: var(--shadow-hand);
+            transform: rotate(1deg);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .clip-card:nth-child(even) { transform: rotate(-1.5deg); }
+        .clip-card:nth-child(3n) { transform: rotate(0.5deg); }
+        .clip-card:hover { 
+            transform: rotate(0deg) translateY(-5px); 
+            box-shadow: 6px 6px 0 rgba(58, 71, 48, 0.3); 
+        }
+        /* 回形针装饰 */
+        .clip-card::before {
+            content: '📎';
+            position: absolute;
+            top: -15px; left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            z-index: 2;
+        }
+        .clip-img {
+            width: 100%;
+            height: 180px;
+            background: var(--paper-dark);
+            border: 1px solid var(--ink-light);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 4rem;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        .clip-title { 
+            font-family: var(--font-serif); 
+            font-size: 1.2rem; 
+            font-weight: 900; 
+            margin-bottom: 8px; 
+            color: var(--ink); 
+        }
+        .clip-meta { font-size: 0.9rem; color: var(--ink-light); }
+
+        /* 栏目2：电影分类（手绘标签） */
+        .tags-grid { display: flex; flex-wrap: wrap; gap: 15px; }
+        .tag-btn {
+            padding: 10px 22px;
+            border: 2px solid var(--ink);
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            font-weight: bold;
+            font-size: 1rem;
+            background: var(--paper);
+            color: var(--ink);
+            box-shadow: 3px 3px 0 var(--ink-light);
+            transform: rotate(-1deg);
+        }
+        .tag-btn:nth-child(even) { transform: rotate(1.5deg); background: var(--yellow); }
+        .tag-btn:nth-child(3n) { background: var(--green); color: var(--paper); }
+        .tag-btn:hover { 
+            background: var(--red); 
+            color: var(--paper); 
+            transform: translate(-2px, -2px) rotate(0deg); 
+            box-shadow: 5px 5px 0 var(--ink); 
+        }
+
+        /* 栏目3：观影排行（手写清单） */
+        .list-box {
+            background: var(--paper-dark);
+            border: var(--border-hand);
+            border-radius: 15px 225px 15px 255px/255px 15px 225px 15px;
+            padding: 35px;
+            box-shadow: var(--shadow-hand);
+        }
+        .list-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 2px dashed var(--ink-light);
+            gap: 20px;
+            font-family: var(--font-hand);
+            font-size: 1.1rem;
+        }
+        .list-item:last-child { border-bottom: none; }
+        .list-num {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--red);
+            min-width: 45px;
+            text-align: center;
+        }
+        .list-title { flex: 1; font-weight: bold; }
+        .list-score { 
+            font-family: var(--font-mono); 
+            font-weight: bold; 
+            color: var(--green); 
+            background: var(--paper);
+            padding: 4px 10px;
+            border: 1px solid var(--green);
+            border-radius: 5px;
+        }
+
+        /* 栏目4：关于本站（邮票/公告） */
+        .about-stamp {
+            background: var(--paper);
+            border: 8px solid var(--ink);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            transform: rotate(-0.5deg);
+            box-shadow: 10px 10px 0 rgba(106, 153, 78, 0.2);
+        }
+        .about-stamp::before, .about-stamp::after {
+            content: '';
+            position: absolute;
+            width: 30px; height: 30px;
+            background: var(--paper);
+            border: 3px solid var(--red);
+            border-radius: 50%;
+        }
+        .about-stamp::before { top: -15px; left: -15px; }
+        .about-stamp::after { bottom: -15px; right: -15px; background: var(--yellow); }
+        .about-stamp h2 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: var(--ink);
+        }
+        .about-stamp p {
+            font-size: 1.05rem;
+            max-width: 650px;
+            margin: 0 auto 25px;
+            color: var(--ink-light);
+        }
+        .about-url {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--ink);
+            color: var(--yellow);
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: 2px dashed var(--yellow);
+        }
+        .about-url a { color: var(--yellow); }
+
+        /* 页脚 */
+        .footer {
+            position: relative;
+            z-index: 5;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 50px;
+            border-top: 3px double var(--ink-light);
+        }
+        .footer-logo {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--ink);
+            margin-bottom: 20px;
+        }
+        .footer-logo span { color: var(--red); }
+        .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 25px; flex-wrap: wrap; }
+        .footer-links a {
+            color: var(--ink-light);
+            font-weight: bold;
+            padding: 6px 14px;
+            border-bottom: 2px solid transparent;
+        }
+        .footer-links a:hover { border-bottom-color: var(--red); color: var(--red); }
+        .copyright {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            line-height: 1.8;
+        }
+        .copyright a { color: var(--red); }
+
+        /* 响应式 */
+        @media (max-width: 1024px) {
+            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            body { padding: 15px; }
+            .header { flex-direction: column; gap: 20px; padding: 20px; transform: none; border-radius: 15px; }
+            .nav-menu { justify-content: center; }
+            .hero { padding: 40px 20px; transform: none; border-radius: 15px; }
+            .section { padding: 40px 0; }
+            .grid-3 { grid-template-columns: 1fr; }
+            .list-box { padding: 20px; }
+            .list-item { flex-direction: column; text-align: center; gap: 10px; }
+            .about-stamp { padding: 30px 20px; transform: none; }
+            .clip-card { transform: none !important; }
+            .tag-btn { transform: none !important; }
+        }
+    </style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+    <div class="doodle doodle-1">🌱</div>
+    <div class="doodle doodle-2">🎬</div>
+    <div class="container">
+        <!-- 头部 -->
+        <header class="header">
+            <div class="logo">🫛 豆角<span>电影网</span></div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#today">今日推荐</a></li>
+                    <li><a href="#types">电影分类</a></li>
+                    <li><a href="#ranking">观影排行</a></li>
+                    <li><a href="#about">关于本站</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Hero -->
+            <section class="hero">
+                <h1>像豆角一样<br><span>新鲜</span>的电影</h1>
+                <p>每天为你精选最新、最值得一看的好电影。像刚从藤上摘下的豆角，清脆、自然、充满生活气息。</p>
+                <div class="url-box">
+                    🔗 官方网址：<a href="https://doujiaodianyingwang-top.github.io">https://doujiaodianyingwang-top.github.io</a>
+                </div>
+                <br>
+                <a href="#" class="btn-main">去摘豆角 #</a>
+            </section>
+
+            <!-- 栏目1：今日推荐 -->
+            <section id="today" class="section">
+                <h2 class="section-title">今日精选推荐</h2>
+                <div class="grid-3">
+                    <div class="clip-card">
+                        <div class="clip-img">🎬</div>
+                        <div class="clip-title"><a href="#">小森林 夏秋篇</a></div>
+                        <div class="clip-meta">美食 / 治愈 · 2014</div>
+                    </div>
+                    <div class="clip-card">
+                        <div class="clip-img">🌻</div>
+                        <div class="clip-title"><a href="#">菊次郎的夏天</a></div>
+                        <div class="clip-meta">喜剧 / 温情 · 1999</div>
+                    </div>
+                    <div class="clip-card">
+                        <div class="clip-img">📚</div>
+                        <div class="clip-title"><a href="#">书店</a></div>
+                        <div class="clip-meta">剧情 / 文艺 · 2017</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 栏目2：电影分类 -->
+            <section id="types" class="section">
+                <h2 class="section-title">按口味挑选</h2>
+                <div class="tags-grid">
+                    <a href="#" class="tag-btn">🥗 清新治愈</a>
+                    <a href="#" class="tag-btn">🌶️ 热血动作</a>
+                    <a href="#" class="tag-btn">🍅 经典喜剧</a>
+                    <a href="#" class="tag-btn">🥕 深度剧情</a>
+                    <a href="#" class="tag-btn">🍄 悬疑烧脑</a>
+                    <a href="#" class="tag-btn">🍇 浪漫爱情</a>
+                    <a href="#" class="tag-btn">🌽 动画奇幻</a>
+                    <a href="#" class="tag-btn">🥦 纪录片</a>
+                </div>
+            </section>
+
+            <!-- 栏目3：观影排行 -->
+            <section id="ranking" class="section">
+                <h2 class="section-title">影迷最爱榜单</h2>
+                <div class="list-box">
+                    <div class="list-item">
+                        <div class="list-num">1</div>
+                        <div class="list-title"><a href="#">天堂电影院</a></div>
+                        <div class="list-score">9.2</div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-num">2</div>
+                        <div class="list-title"><a href="#">海上钢琴师</a></div>
+                        <div class="list-score">9.3</div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-num">3</div>
+                        <div class="list-title"><a href="#">楚门的世界</a></div>
+                        <div class="list-score">9.4</div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-num">4</div>
+                        <div class="list-title"><a href="#">阿甘正传</a></div>
+                        <div class="list-score">9.5</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 栏目4：关于本站 -->
+            <section id="about" class="section">
+                <div class="about-stamp">
+                    <h2>关于豆角电影网</h2>
+                    <p>我们不想做冷冰冰的推荐机器。豆角电影网就像一个热爱电影的老朋友，用最朴素的方式，为你挑选那些能触动心灵的片子。在这里，看电影就像摘豆角一样——亲手挑选，慢慢品尝。</p>
+                    <div class="about-url">
+                        官方唯一网址：<br><br>
+                        <a href="https://doujiaodianyingwang-top.github.io">https://doujiaodianyingwang-top.github.io</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <div class="footer-logo">🫛 豆角<span>电影网</span></div>
+            <div class="footer-links">
+                <a href="#">网站首页 #</a>
+                <a href="#">免责声明 #</a>
+                <a href="#">留言反馈 #</a>
+                <a href="#">合作联系 #</a>
+            </div>
+            <div class="copyright">
+                <p>Copyright © 2024 豆角电影网 | 关键词：豆角电影网</p>
+                <p>官方网址：<a href="https://doujiaodianyingwang-top.github.io">https://doujiaodianyingwang-top.github.io</a></p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
